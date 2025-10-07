@@ -1,7 +1,4 @@
----
-title: Adding core game objects
-slug: core-game-objects
----
+# Adding core game objects
 
 For Sushi Neko you will be using the default portrait orientation. You will need to set the *GameScene.sks* scene
 size to an iPhone resolution. The artwork was designed for iPhone 6 or 7, and should work for most other screen sizes.
@@ -20,24 +17,18 @@ This game will run in protrait mode only.
 > [action]
 > Open *GameScene.sks*, delete the default `helloLabel` object from the heirarchy. You can do this by right clicking on it
 > and selecting delete.
-> ![GameScene Tree](../Tutorial-Images/xcode_gamescene_tree.png)
 >
 > Zoom out until you can see the white bounding box of the scene. Use the controls on the bottom right of the scene editor
 >
 > to zoom in and out. They should look like a `+`, `-`, and `=` symbol.
 >
-> ![Gamescene Editor](../Tutorial-Images/xcode_gamescene_sceneeditor.png)
+> ![Gamescene Editor](xcode_gamescene_sceneeditor.png)
 >
-> Click on
-> *Atrributes inspector* and set the *Size* to `(320,568)`
->
-> The attributes inspector can be shown and hidden by clicking the last option in this section
->
-> ![Attributes inspector](../Tutorial-Images/xcode_inspector.png)
+> in the *Atrributes inspector* set *Size* to `iPhone 6s` and `Portrait`
 >
 > Also, move the anchor point to the lower left by setting *Anchor* to `(0, 0)`.
 >
-> ![GameScene size](../Tutorial-Images/xcode_gamescene_size.png)
+> ![Attributes inspector](xcode_inspector.png)
 >
 
 ## Adding the backdrop
@@ -49,12 +40,12 @@ It's nice to work with a backdrop, so let's add this before working on the core 
 > image until it fills the whole scene.
 > Set the *Z Position* to `-1` and set the *Name* to `background`.
 >
+> ![background](add-background.png) 
+>
 
 # Creating Sushi
 
-Sushi is a key ingredient in the game mechanic, you will use it to build a sushi tower. To create the tower you will
-be randomly stacking sushi, before you can stack the tower you need to build a core piece of sushi.  The core piece
-will contain two chopsticks, one on the left and one on the right.  
+Sushi is a key ingredient in the game mechanic, you will use it to build a sushi tower. To create the tower you will be randomly stacking sushi, before you can stack the tower you need to build a core piece of sushi.  The core piece will contain two chopsticks, one on the left and one on the right.  
 
 This will enable 3 possible sushi pieces:
 
@@ -67,12 +58,14 @@ Let's setup this core sushi piece.
 > [action]
 >
 > Drag in *roll.png* from `assets.atlas` and place it in the center of the screen near the bottom.
-> I would suggest around `(160,160)`, set the *Name* to `sushiBasePiece`.
+> I would suggest around `(188,160)`, set the *Name* to `sushiBasePiece`.
+>
+> ![sushiBasePiece](sushiBasePiece.png)
 >
 > Drag in *chopstick.png* and move it to the top-left side of the *sushiBasePiece*.
 > You want this *chopstick* to be part of our **Sushi Piece**, set *Parent* to `sushiBasePiece`.  Set the *Name* to `leftChopstick`.
 >
-> ![Left chopstick setup](../Tutorial-Images/xcode_spritekit_leftchopstick.png)
+> ![Left chopstick setup](leftchopstick.png)
 >
 
 Now we need to add the right hand side chopstick.
@@ -82,10 +75,14 @@ Now we need to add the right hand side chopstick.
 > *Copy / Paste* the left chopstick, set the *Name* to `rightChopstick`.  
 > There is a simple trick to flip the asset horizontally, set *Scale X* to `-1`.
 >
-> ![Flip horizontally](../Tutorial-Images/xcode_spritekit_flip_horizontal.png)
+> ![Flip horizontally](rightChopstick.png)
 >
 
 Later you will program how the chopsticks appear to make the game work.
+
+> [action] Set the parent of each of the chopsticks to `sushiBasePiece`. You can do this easily by selecting each chopstick, and choosing `sushiBasePiece` from the "Parent" menu. 
+> 
+> ![Chops stick parent](chopstick-parent.png)
 
 ## Coding the game functionality
 
@@ -97,12 +94,14 @@ before continuing.
 >
 ```
 import SpriteKit
->
+
 class GameScene: SKScene {
->
+
 }
 ```
 >
+
+Now the GameScene is empty, you will add more code here later. 
 
 ## Sushi type
 
@@ -130,23 +129,22 @@ Next up you will create a custom sushi class called *SushiPiece*
 >
 ```
 import SpriteKit
->
+
 class SushiPiece: SKSpriteNode {
->    
+ 
     /* Chopsticks objects */
     var rightChopstick: SKSpriteNode!
     var leftChopstick: SKSpriteNode!
->    
+ 
     /* You are required to implement this for your subclass to work */
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
->    
+
     /* You are required to implement this for your subclass to work */
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
->    
 }
 ```
 >
@@ -158,7 +156,7 @@ Before you do this, you need to set the **sushiBasePiece** class to *SushiPiece*
 > [action]
 > Open *GameScene.sks*, select the *sushiBasePiece* and set *Custom Class* to `SushiPiece`
 >
-> ![Sushi custom class](../Tutorial-Images/xcode_spritekit_sushi_custom_class.png)
+> ![Sushi custom class](xcode_spritekit_sushi_custom_class.png)
 
 Run the game `CMD+R`, you should expect to see the scene as it is in the editor.
 
@@ -174,7 +172,6 @@ that is required for each sushi piece to connect to it's child nodes, the chopst
 > [action]
 > Add the following method to your *SushiPiece* class. This goes below where the `required init` method ends and before the last curly bracket.
 >
-
 ```
 func connectChopsticks() {
     /* Connect our child chopstick nodes */
@@ -307,9 +304,8 @@ that you will want to track the *side* of the cat.
 >
 ```
 import SpriteKit
->
+
 class Character: SKSpriteNode {
->
     /* Character side */
     var side: Side = .left {
         didSet {
@@ -323,12 +319,12 @@ class Character: SKSpriteNode {
             }
         }
     }
->    
+
     /* You are required to implement this for your subclass to work */
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
->
+
     /* You are required to implement this for your subclass to work */
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -344,7 +340,7 @@ Next, you need to connect the cat in the code, see if you can do this yourself. 
 just don't forget the name of this class :]
 
 > [solution]
-> Open *GameScene.swift* and add the following property to the class below `sushiBasePiece`.
+> Open *GameScene.swift* and add the following property to the class below `var sushiBasePiece: SushiPiece!`.
 >
 ```
 /* Cat Character */
