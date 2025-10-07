@@ -1,7 +1,4 @@
----
-title: Player health and scoring
-slug: gameplay-part-2
----
+# Player health and scoring
 
 Let's expand upon your gameplay with a health mechanic to add time pressure to the player's actions and of course the quintessential indicator of success, the score label!
 
@@ -11,11 +8,13 @@ The health bar comprises of two assets, the *life_bg.png* background and the *li
 
 > [action]
 > Open *GameScene.sks* and drag *life_bg.png* to the center of the scene and near the top.
-> `(160, 540)` seems like a good position. Now set the *Name* to `healthBarBackground` and
-> set the *Z Position* to `1000`. You want this to be high due to the sushi pieces.
+> `(188, 590)` seems like a good position. Now set the *Name* to `healthBarBackground` and
+> set the *Z Position* to `10000`. You want this to be high due to the sushi pieces.
 >
-> Drag *life.png* into the center of the the bar, set the *Z-Position* to `1001` and *Name* to `healthBar`
+> Drag *life.png* into the center of the the bar, set the *Z-Position* to `10001` and *Name* to `healthBar`
 >
+
+NOTE! Again the z-position of elements has postential issues that will need to be dealt with. The numbers here will be good up to 10000 points! 
 
 How do you think you could gracefully decrease the health bar?
 
@@ -82,7 +81,7 @@ A great place to add a steady decline would be in the `update(_ currentTime:)` m
 ```
 /* Called before each frame is rendered */
 if state != .playing { return }
->
+
 /* Decrease Health */
 health -= 0.01
 /* Has the player ran out of health? */
@@ -136,11 +135,11 @@ player's score in the scene and also a counter property to track the score and u
 
 > [action]
 > Open *GameScene.sks* and drag across a *Label* from the *Object Library*.
-> You can set the *Position* to something like `(160,340)`.
+> You can set the *Position* to something like `(188,508)`.
 >
 > Set the *Name* to `scoreLabel` and change the *Font* to something you like.
 > ![Score font selection](../Tutorial-Images/xcode_screenshot_font_selection.png)
-> Set the *Text* to `0` and set the *Z-Position* to `1000` to match the health bar. You want this number to be high as
+> Set the *Text* to `0` and set the *Z-Position* to `10000` to match the health bar. You want this number to be high as
 > well so that it is displayed above the sushi pieces.
 >
 > Set the font and the size of the label to something bold that will be easy to read. 
