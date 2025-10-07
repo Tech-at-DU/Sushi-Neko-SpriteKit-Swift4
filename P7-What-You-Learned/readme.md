@@ -1,7 +1,4 @@
----
-title: What You Learned
-slug: what-you-learned
----
+# What You Learned
 
 Congrats again on finishing *Sushi Neko* and building another great iPhone game!
 
