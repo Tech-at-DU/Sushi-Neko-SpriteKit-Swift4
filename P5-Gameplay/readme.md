@@ -1,7 +1,5 @@
----
-title: Turning a mechanic into a game
-slug: gameplay
----
+# Turning a mechanic into a game
+
 
 What is the difference between a game mechanic and a game? You've built the core game mechanic yet on its own this is
 not very satisfying for the player.  You need to wrap it up now into a game, the best advice is always, keep it simple!
@@ -63,6 +61,10 @@ When should you change the GameState change from `.title` to `.ready`? Let's add
 > Open *GameScene.sks* and drag *button.png* to the bottom-middle of the scene, just below the sushi base.
 > `(160, 55)` looks to be a good spot for the position.
 > Set *Name* to `playButton`, change *Custom Class* to `MSButtonNode`.
+
+NOTE! The button will appear behind the sushi pieces. We can fix this by setting the z-position to a number like 12. After a number of pieces are removed they will eventually cover the button, seems like each of the pieces is incrementing their z-position. For now set the z-position of the button to 9999. This will keep the button in front for at least 10000 points. This problem should probably be addressed by using a parent node. 
+
+You'll see this when the cat punches a sushi piece. Eventually the cat appears behind the piece. 
 
 <!-- -->
 
@@ -146,9 +148,7 @@ Add the following code in `touchesBegan(_ touches:)`, at the beginning of your `
 ```
 /* Check character side against sushi piece side (this is our death collision check)*/
 if character.side == firstPiece.side {
->
-    gameOver()
->        
+    gameOver()    
     /* No need to continue as player is dead */
     return
 }
@@ -173,36 +173,34 @@ Now you need to add a *gameOver* method, you will want to:
 >
 ```
 func gameOver() {
-    /* Game over! */
->    
+    /* Game over! */ 
     state = .gameOver
->
+
     /* Create turnRed SKAction */
     let turnRed = SKAction.colorize(with: .red, colorBlendFactor: 1.0, duration: 0.50)
->    
+
     /* Turn all the sushi pieces red*/
     sushiBasePiece.run(turnRed)
     for sushiPiece in sushiTower {
         sushiPiece.run(turnRed)
     }
->    
+ 
     /* Make the player turn red */
     character.run(turnRed)
->    
+
     /* Change play button selection handler */
-    playButton.selectedHandler = {
->            
+    playButton.selectedHandler = {     
         /* Grab reference to the SpriteKit view */
         let skView = self.view as SKView?
->            
+      
         /* Load Game scene */
         guard let scene = GameScene(fileNamed: "GameScene") as GameScene? else {
             return
         }
->            
+      
         /* Ensure correct aspect mode */
         scene.scaleMode = .aspectFill
->        
+ 
         /* Restart GameScene */
         skView?.presentScene(scene)
     }
