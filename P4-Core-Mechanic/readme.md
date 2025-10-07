@@ -1,7 +1,4 @@
----
-title: Building the core mechanic
-slug: core-mechanic
----
+# Building the core mechanic
 
 Time to work on the games core mechanic. It's a lesser known fact that cat's will punch sushi as all they want is some
 sashimi.  Cats can also navigate space and time to teleport instantly from one side of the screen to the other and knock
@@ -33,13 +30,28 @@ override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 ```
 >
 
+NOTE! I had to update `Character.swift` to get the cat to position correctly using the iPhone 6s dimensions. I made these changes: 
+
+```Swift
+    ...
+    if side == .left {
+        xScale = 1
+        position.x = 100 // 70
+      } else {
+        /* An easy way to flip an asset horizontally is to invert the X-axis scale */
+        xScale = -1
+        position.x = 275 // 252
+      }
+    ...
+```
+
 You are performing a simple check to decide which side of the screen was touched. Remember the property observer *didSet*,
 that you setup in *Character.swift* (Take a quick look)? When you set the *side* property the cat will move set its position
 appropriately.
 
 Run the game... You should have a working cat teleporter.
 
-![Animated cat teleporter](../Tutorial-Images/animated_cat_teleporter.gif)
+![Animated cat teleporter](animated_cat_teleporter.gif)
 
 # Cat knockout
 
@@ -54,17 +66,15 @@ You are going to create three animation actions to enable your cat to perform th
 
 > [action]
 > Open *GameScene.sks* and click on create new action in the timeline and name it `Punch`:
-> ![Create new punch action](../Tutorial-Images/xcode_spritekit_new_action_punch.png)
+> ![Create new punch action](PunchAction.gif))
 >
 > Save this new SpriteKit Action file as `AnimationActions.sks`
-> ![Save SpriteKit Action file](../Tutorial-Images/xcode_spritekit_action_file_save.png)
 >
 
 This will open up the empty *AnimationActions.sks*, and you should have an empty **Punch** action in the timeline.
 
 > [action]
-> Expand the **Punch** action timeline, click on the *Object library* and drag across an *AnimateWithTextures Action*.
-> ![Add AnimateWithTextures action](../Tutorial-Images/xcode_spritekit_add_animatewithtextures_action.png)
+> Expand the **Punch** action timeline, press command+Shift+L to open the *Object library* and drag across an *AnimateWithTextures Action*.
 >
 > To build the animation you need to drag in the *character2.png* and *character3.png* from the *Media Library* into the
 > *Textures* box of the new action.
@@ -201,12 +211,12 @@ Time for you to add a bit of polish and create two new action animations.
 > Expand the timeline for this action and drag across a *Move Action*
 > Set the *Duration* to `0.5`, *Timing function* to `Ease In` and *Offset X* to `300`.
 >
-> ![Move action attributes](../Tutorial-Images/xcode_spritekit_move_attributes.png)
+> ![Move action attributes](xcode_spritekit_move_attributes.png)
 >
 > Now drag across a *Rotate Action* and place it directly under the *Move Action*.
 > Set the *Duration* to `0.5`
 >
-> ![FlipRight action](../Tutorial-Images/xcode_spritekit_action_flipright.png)
+> ![FlipRight action](xcode_spritekit_action_flipright.png)
 
 Great, you will need a FlipLeft action as well, it is possible to *Duplicate* an action.  However, there is no way to
 rename it which isn't so great.
@@ -215,6 +225,8 @@ rename it which isn't so great.
 > Create a new action called `FlipLeft`
 > Copy the two actions from **FlipRight** into the **FlipLeft** timeline.
 > Modify the *Offset X* of the *Move Action* to `-300`
+>
+> ![FlipLeft](FlipLeft.png)
 
 Now you have two actions ready to be run in your game code. You will create a new method in *SushiPiece.swift* to
 facilitate this.
