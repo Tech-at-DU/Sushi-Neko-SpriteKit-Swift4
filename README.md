@@ -1,6 +1,6 @@
-# Sushi Neko SpriteKit Swift 4
+# Sushi Neko SpriteKit
 
-Use SpriteKit and Swift 4 to build a game like [Timberman](http://www.digitalmelody.eu/games/Timberman). This version of the
+Use SpriteKit to build a game like [Timberman](http://www.digitalmelody.eu/games/Timberman). This version of the
 tutorial has been updated for Swift 4 using Xcode 9.
 
 <!-- screenshots and gifs from licecap (http://www.cockos.com/licecap/), include them in a screenshots folder and reference with relative links -->

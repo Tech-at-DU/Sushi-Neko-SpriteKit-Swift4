@@ -1,32 +1,27 @@
----
-title: Setting up a new project
-slug: new-spritekit-project
----
+# Setting up a new project
 
 > [action]
 > Create a new *Game* project in Xcode named `SushiNeko` and check that the *Language* is set to `Swift` and
 > *Game Technology* is set to `SpriteKit`. Choose a location for the project and finish the process.
-> ![Xcode new project](../Tutorial-Images/xcode_new_project-1.png)
+> ![Xcode new project](xcode_new_project-1.png)
 >
-> ![Xcode new project](../Tutorial-Images/xcode_new_project-2.png)
+> ![Xcode new project](xcode_new_project-2.png)
 
 ## Importing Resources
 
 > [action]
-> Download the [Sushi Neko Art Pack](https://github.com/MakeSchool-Tutorials/Sushi-Neko-SpriteKit-Swift4/raw/master/assets.atlas.zip)
+> Download the [Sushi Neko Art Pack](https://github.com/Tech-at-DU/Sushi-Neko-SpriteKit-Swift4/blob/master/assets.atlas.zip)
 > we created for you.
 > Once the download is complete, unpack the folder and add it to your project. Do this by dragging the folder *assets.atlas* to the Xcode navigator (the left pane where you can see all the files). Doing this will show a window asking if you want to copy the files.
 > Ensure you have *Copy items if needed* and *Create groups*.
-> ![Xcode file import options](../Tutorial-Images/xcode_adding_files_flags.png)
 >
 
 <!-- -->
 
 > [action]
-> Download the [SFX Starter Kit](https://github.com/MakeSchool-Tutorials/Sushi-Neko-SpriteKit-Swift3/raw/master/SFX.zip)
+> Download the [SFX Starter Kit](https://github.com/Tech-at-DU/Sushi-Neko-SpriteKit-Swift4/blob/master/SFX.zip)
 > we made for you. Once the download is complete, unpack the folder and add to the project.
 > Ensure you have *Copy items if needed* and *Create groups*.
-> ![Xcode file import options](../Tutorial-Images/xcode_adding_files_flags.png)
 >
 
 ## Adding extra functionality
@@ -36,7 +31,7 @@ SpriteKit is missing some useful functionality, thankfully we have bundled some 
 Select the option *Swift file* and name it *MSButtonNode*. Its location should be inside the SuhiNeko folder.
 
 > [action]
-> Download *[MSButtonNode.swift](https://github.com/MakeSchool-Tutorials/Sushi-Neko-SpriteKit-Swift3/raw/master/MSButtonNode.swift)* and copy the contents into the file you just created.
+> Download *[MSButtonNode.swift](https://github.com/Tech-at-DU/Sushi-Neko-SpriteKit-Swift4/blob/master/MSButtonNode.swift)* and copy the contents into the file you just created.
 
 # Building the project
 
