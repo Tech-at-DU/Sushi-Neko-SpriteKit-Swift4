@@ -1,7 +1,4 @@
----
-title: Welcome to bonus stage
-slug: bonus-stage
----
+# Welcome to bonus stage
 
 Welcome to bonus stage! Your task, should you accept, is to work through the list of challenges and take your game to the next level.
 
