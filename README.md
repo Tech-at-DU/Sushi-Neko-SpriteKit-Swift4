@@ -48,3 +48,15 @@ Sprite nodes, place them on the screen, and apply actions provides limitless pos
 - Have a basic understanding of SpriteKit's core concepts.
 - Understand the scene editor
 - Use actions to move and animate sprites at your whim. 
+
+## Tutorial Steps
+
+- [Getting Started](./P0-Getting-Started/)
+- [New Project](./P1-New-Project/)
+- [Core Game Objects](./P2-Core-Game-Objects/)
+- [The Sushi Tower](./P3-The-Sushi-Tower/)
+- [Core Mechanic](./P4-Core-Mechanic/)
+- [Gameplay](./P5-Gameplay/)
+- [Gameplay Part 2](./P6-Gameplay-Part-2/)
+- [What You Learned](./P7-What-You-Learned/)
+- [Bonus Stage](./P8-Bonus-Stage/)
