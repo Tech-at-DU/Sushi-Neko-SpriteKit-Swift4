@@ -6,6 +6,30 @@ There are no solutions provided and I would encourage you to discuss potential s
 
 It would be a good idea to create a **new branch** in your repo for these challenges.
 
+# Mechanical Improvements
+
+There are a couple issues that might cause problems if the game is played for more than points. Sushi Pieces are added and increment their z-position. This means that after a number of pieces are added pieces will eventually appear above other elements, like the cat, button, score, and life bar. 
+
+This line in `addTowerPiece(side:)` points to the problem: 
+
+```Swift
+newPiece.zPosition = lastZPosition + 1
+```
+
+Here each new piece is assigned the last z-position + 1. 
+
+Here are a couple solutions you could use to solve this: 
+- Create an empty node, and use it as the parent element for sushi pieces. Pieces would inside that node at their z-position, outside the node they will stack at the z-position assigned to the node. 
+- Reset the z-position of all pieces when adding a new piece. You could do that in `addRandomPieces(total:)`. This would keep all of the pieces at a z-position of 1 to 10 (or the number of pieces you have), other nodes that need to stack on top would need a z-position greater than the number of pieces. 
+
+After following the tutorial, I notice I need to tap the play button twice to continue the game. Could be an error on my part, or it could have something to do with the `gameState`. 
+
+Hiding the play button while playing the game, and show the button after the game is over would be a big improvement. 
+
+# Improve Gameplay
+
+The game was pretty hard to play using the values in the tutorial. Editing the amount the health bar decreases and the amount of health added with each pieces removed, can go a long way to improving the fun and playability. 
+
 # Improve the main menu
 
 The main menu is a little boring, just a play button.  Although this is certainly functional it would be nice to dress this up and at the very least display the game title.
